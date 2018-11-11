@@ -1,8 +1,140 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
+#include<assert.h>
+
+char* MyStrcpy(char* arr2, const char* arr1)
+{
+	assert(arr1);
+	assert(arr2);
+	char* ret = arr2;
+	while (*ret)
+	{
+		ret++;
+	}
+	while (*ret++ = *arr1++)
+	{
+		;
+	}
+		return ret;
+}
+int main()
+{
+	char arr1[] = "qwer";
+	char arr2[80] = "asdf";
+	int size = strlen(arr1);
+	arr2[80] = MyStrcpy(arr2,arr1);
+	printf("%s",arr2);
+	system("pause");
+	return 0;
+}
 
 
+//char* MyStrcpy(char * arr2, const char* arr1)
+//{
+//	assert(arr1);
+//	assert(arr2);
+//	char* ret = arr2;
+//	while (*arr2++ = *arr1++)
+//	{
+//
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "qwer";
+//	int size = strlen(arr1);
+//	char *arr2 = (char*)malloc((size+1)*sizeof(char));
+//	arr2 = MyStrcpy(arr2,arr1);
+//	printf("%s",arr2);
+//	free(arr2);
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int money = 20;
+//	int total = money;
+//	int empty = 20;
+//	while (empty>=2)
+//	{
+//		total = total + empty/2;
+//		empty = empty / 2 + empty % 2;
+//	}
+//	printf("%d",total);
+//	system("pause");
+//	return 0;
+//}
+
+//int main()
+//{
+//	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+//	int size = sizeof(arr) / sizeof(arr[0]);
+//	int num1 = 0, num2 = 0;
+//	int sum = arr[0];
+//	for (int i = 1; i < size; i++)
+//	{
+//		sum ^= arr[i];
+//	}
+//	int sum0 = sum;
+//	int count = 0;
+//	while (!(sum&1))
+//	{
+//		sum >>= 1;
+//		count++;
+//	}
+//	for (int i = 0; i < size; i++)
+//	{
+//		int temp = arr[i]>>count;
+//		if ((temp & 1) == 0)
+//		{
+//			int x = 0;
+//			if (x == 0)
+//			{
+//				num1 = arr[i];
+//			}
+//			else
+//			{
+//				num1 ^= arr[i];
+//			}
+//			x++;
+//		}
+//	}
+//	num2 = sum0^num1;
+//	printf("%d %d",num1,num2);
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int arr[] = {1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1,0};
+//	int count = 0;
+//	int size = sizeof(arr) / sizeof(arr[0]);
+//	for (int i = 0; i < size ; i++)
+//	{
+//		for (int j = 0; j < size; j++)
+//		{
+//			if (i!=j && (arr[i] ^ arr[j]) == 0)
+//			{
+//				break;
+//			}
+//			if (j == size-1)
+//			{
+//				printf("%d ",arr[i]);
+//				count++;
+//			}
+//		}
+//	}
+//	system("pause");
+//	return 0;
+//}
 
 //int reverse_bit(int value)
 //{
