@@ -80,22 +80,34 @@
 
 int main()
 {
-	//test();
-	QueueBy2Stack q;
-	QueueBy2StackInit(&q);
-	QueueBy2StackPush(&q, 1);
-	QueueBy2StackPush(&q, 2);
-	QueueBy2StackPush(&q, 3);
-	QueueBy2StackPush(&q, 4);
-	QueueBy2StackPush(&q, 5);
-	printf("front = %d",QueueBy2StackFront(&q));
-	printf("back = %d", QueueBy2StackBack(&q));
+	////test();
+	//QueueBy2Stack q;
+	//QueueBy2StackInit(&q);
+	//QueueBy2StackPush(&q, 1);
+	//QueueBy2StackPush(&q, 2);
+	//QueueBy2StackPush(&q, 3);
+	//QueueBy2StackPush(&q, 4);
+	//QueueBy2StackPush(&q, 5);
+	//printf("front = %d",QueueBy2StackFront(&q));
+	//printf("back = %d", QueueBy2StackBack(&q));
 
-	QueueBy2StackPop(&q);
-	QueueBy2StackPop(&q);
-	printf("front = %d", QueueBy2StackFront(&q));
-	printf("back = %d", QueueBy2StackBack(&q));
+	//QueueBy2StackPop(&q);
+	//QueueBy2StackPop(&q);
+	//printf("front = %d", QueueBy2StackFront(&q));
+	//printf("back = %d", QueueBy2StackBack(&q));
+	//StackBy2Queue s;
+	//StackBy2QueueInit(&s);
+	int In[] = { 1, 2, 3, 4, 5 };
+	int Out[] = { 4,5, 3, 1,2 };
+	if (IsValidStack(In, sizeof(In) / sizeof(In[0]), Out, sizeof(Out) / sizeof(Out[0])))
+	{
+		printf("∆•≈‰\n");
+	}
+	else
+	{
+		printf("NO∆•≈‰\n");
 
+	}
 	system("pause");
 	return 0;
 }
