@@ -10,7 +10,6 @@ int main()
 	{
 		InsertBSTREC(&pRoot, a[i]);
 	}
-	printf("\n");
 	PreOrder(pRoot);
 	printf("\n");
 	DeleteBSTreeREC(&pRoot, 7);//É¾³ý½áµã
