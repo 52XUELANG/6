@@ -4,31 +4,218 @@
 #include<string.h>
 #include<assert.h>
 
-char* MyStrcpy(char* arr2, const char* arr1)
+void * MyMemmove(void * str1, const void * str2, int size)
 {
-	assert(arr1);
-	assert(arr2);
-	char* ret = arr2;
-	while (*ret)
+	assert(str1);
+	assert(str2);
+	if (str1 <= str2 )
 	{
-		ret++;
+		while (size--)
+		{
+			*(char*)str1 = *(char*)str2;
+			str1 = (char*)str1 + 1;
+			str2 = (char*)str2 + 1;
+		}
 	}
-	while (*ret++ = *arr1++)
+	else
 	{
-		;
+		str1 = (char*)str1 + size - 1;
+		str2 = (char*)str2 + size - 1;
+		while (size--)
+		{
+			*(char*)str1 = *(char*)str2;
+			str1 = (char*)str1 - 1;
+			str2 = (char*)str2 -1;
+		}
 	}
-		return ret;
 }
+
 int main()
 {
-	char arr1[] = "qwer";
-	char arr2[80] = "asdf";
-	int size = strlen(arr1);
-	arr2[80] = MyStrcpy(arr2,arr1);
-	printf("%s",arr2);
+	char str[] = "memmove can be very useful";
+	MyMemmove(str + 6, str + 2, 3);
+	puts(str);
 	system("pause");
 	return 0;
 }
+
+//void* MyMemcpy(void * arr2, const void * arr1, int size)
+//{
+//	assert(arr1);
+//	assert(arr2);
+//	char* ret = (char*)arr2;
+//	while (size--)
+//	{
+//		*(char*)arr2 = *(char*)arr1;
+//		arr1 = (char*)arr1 + 1;
+//		arr2 = (char*)arr2 + 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "qwer";
+//	int size = strlen(arr1);
+//	char *arr2 = (char*)malloc((size+1)*sizeof(char));
+//	arr2 = MyMemcpy(arr2,arr1,sizeof(arr1)/sizeof(arr1[0]));
+//	printf("%s",arr2);
+//	free(arr2);
+//	system("pause");
+//	return 0;
+//}
+
+
+//void* MyMemcpy(void * arr2, const void * arr1, int size)
+//{
+//	assert(arr1);
+//	assert(arr2);
+//	char* ret = (char*)arr2;
+//	while (size--)
+//	{
+//		*(char*)arr2 = *(char*)arr1;
+//		arr1 = (char*)arr1 + 1;
+//		arr2 = (char*)arr2 + 1;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "qwer";
+//	int size = strlen(arr1);
+//	char *arr2 = (char*)malloc((size+1)*sizeof(char));
+//	arr2 = MyMemcpy(arr2,arr1,sizeof(arr1)/sizeof(arr1[0]));
+//	printf("%s",arr2);
+//	free(arr2);
+//	system("pause");
+//	return 0;
+//}
+
+
+//int MyStrcmp(const char * arr1, const char* arr2)
+//{
+//	assert(arr1);
+//	assert(arr2);
+//	while (*arr1||*arr2)
+//	{
+//		if ((*arr1 - *arr2) == 0)
+//		{
+//			arr1++;
+//			arr2++;
+//		}
+//		else if ((*arr1 - *arr2) > 0)
+//		{
+//			return 1;
+//		}
+//		else
+//		{
+//			return -1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "\0";
+//	char arr2[] = "\0";
+//	printf("%d\n", MyStrcmp(arr1, arr2));
+//	system("pause");
+//	return 0;
+//}
+
+//char* MyStrchr(const char* str1,const char c )
+//{
+//	assert(str1);
+//	char* temp1 = (char*)str1;
+//	if (c == '\0')
+//	{
+//		return NULL;
+//	}
+//	while (*temp1++)
+//	{
+//		if (*temp1 == c)
+//		{
+//			return temp1;
+//		}
+//	}
+//	return NULL;
+//}
+//
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//	char * pch = MyStrchr(str,'s');
+//	printf("%s",pch);
+//	system("pause");
+//	return 0;
+//}
+
+//char* MyStrstr(const char* str1,const char* str2 )
+//{
+//	assert(str1);
+//	assert(str2);
+//	char* temp1 = (char*)str1;
+//	char* temp2 = (char*)str2;
+//	if (*str2 == '\0')
+//	{
+//		return NULL;
+//	}
+//
+//	char* pch = temp1;
+//
+//	while (*pch)
+//	{
+//		temp1 = pch;
+//		temp2 = (char*)str2;
+//		while (*temp1 && *temp2 && (*temp1 == *temp2))
+//		{
+//			temp1++;
+//			temp2++;
+//		}
+//		if (*temp2 == '\0')
+//		{
+//			return pch;
+//		}
+//		pch++;
+//	}
+//}
+//
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//	char * pch = MyStrstr(str,"simple");
+//	printf("%s",pch);
+//	system("pause");
+//	return 0;
+//}
+
+
+//char* MyStrcat(char* arr2, const char* arr1)
+//{
+//	assert(arr1);
+//	assert(arr2);
+//	char* ret = arr2;
+//	while (*ret)
+//	{
+//		ret++;
+//	}
+//	while (*ret++ = *arr1++)
+//	{
+//		;
+//	}
+//		return ret;
+//}
+//int main()
+//{
+//	char arr1[] = "qwer";
+//	char arr2[80] = "asdf";
+//	int size = strlen(arr1);
+//	arr2[10] = MyStrcat(arr2,arr1);
+//	printf("%s",arr2);
+//	system("pause");
+//	return 0;
+//}
 
 
 //char* MyStrcpy(char * arr2, const char* arr1)
