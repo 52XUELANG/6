@@ -4,40 +4,143 @@
 #include<string.h>
 #include<assert.h>
 
-void * MyMemmove(void * str1, const void * str2, int size)
-{
-	assert(str1);
-	assert(str2);
-	if (str1 <= str2 )
-	{
-		while (size--)
-		{
-			*(char*)str1 = *(char*)str2;
-			str1 = (char*)str1 + 1;
-			str2 = (char*)str2 + 1;
-		}
-	}
-	else
-	{
-		str1 = (char*)str1 + size - 1;
-		str2 = (char*)str2 + size - 1;
-		while (size--)
-		{
-			*(char*)str1 = *(char*)str2;
-			str1 = (char*)str1 - 1;
-			str2 = (char*)str2 -1;
-		}
-	}
-}
+//int IntCmp(const void* p1,const void*p2)
+//{
+//	return *(int*)p1 > *(int*)p2;
+//}
+//
+//void Swap(void* p1, void* p2,int size)
+//{
+//	for (int i = 0; i < size; i++)
+//	{
+//		char temp = *((char*)p1 + i);
+//		*((char*)p1 + i) = *((char*)p2 + i);
+//		*((char*)p2 + i) = temp;
+//	}
+//}
+//
+//void MyBubble(void* base,int size,int size_base,int(*cmp)(void* p1,void* p2))
+//{
+//	for (int i = 0; i < size-1; i++)
+//	{
+//		for (int j = 0; j < size - 1 - i; j++)
+//		{
+//			if (cmp((char*)base + j*size_base, (char*)base + (j + 1)*size_base))
+//			{
+//				Swap((char*)base + j*size_base, (char*)base + (j + 1)*size_base,size_base);
+//			}
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+//	MyBubble(a,10,sizeof(a[0]),IntCmp);
+//	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
+//	{
+//		printf("%d ", a[i]);
+//	}
+//	system("pause");
+//	return 0;
+//}
 
-int main()
-{
-	char str[] = "memmove can be very useful";
-	MyMemmove(str + 6, str + 2, 3);
-	puts(str);
-	system("pause");
-	return 0;
-}
+//int IntCmp(const void* p1,const void*p2)
+//{
+//	return *(int*)p1 > *(int*)p2;
+//}
+//int CharCmp(const void* p1, const void* p2)
+//{
+//	return **(int**)p1 > **(int**)p2;
+//}
+//int main()
+//{
+//	int a[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+//	qsort(a,10,sizeof(a[0]),IntCmp);
+//	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
+//	{
+//		printf("%d ", a[i]);
+//	}
+//
+//	char* c[] = {"j","i","h","g","f","e","d","c","b","a" };
+//	qsort(c, sizeof(c)/sizeof(c[0]), sizeof(c[0]), CharCmp);
+//	for (int i = 0; i < sizeof(a) / sizeof(a[0]); i++)
+//	{
+//		printf("%s ", c[i]);
+//	}
+//	system("pause");
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int a[4] = { 1, 2, 3, 4 };
+//	int *p1 = (int *)(&a + 1);
+//	int *p2 = (int *)((int)a + 1);
+//	printf("%x,%x\n",p1[-1],*p2);
+//
+//	int b[3][2] = { (1, 2), (3, 4), (5, 6) };
+//	int *p3;
+//	p3 = b[0];
+//	printf("%d\n",p3[0]);
+//
+//	int c[5][5];
+//	int(*p4)[4];
+//	p4 = c;
+//	printf("%p,%d\n",&p4[4][2]-&c[4][2],&p4[4][2]-&c[4][2]);
+//
+//	char *d[] = { "work", "at", "alibaba" };
+//	char**p5 = d;
+//	p5++;
+//	printf("%s\n",*p5);
+//
+//	char*e[] = {"ENTER","NEW","POINT","FIRST"};
+//	char**ep[] = { e + 3, e + 2, e + 1, e };
+//	char***epp = ep;
+//	printf("%s\n",**++epp);
+//	printf("%s\n", *--*++epp+3);
+//	printf("%s\n", *epp[-2]+3);
+//	printf("%s\n", epp[-1][-1]+1);
+//
+//	system("pause");
+//	return 0;
+//}
+
+//void * MyMemmove(void * str1, const void * str2, int size)
+//{
+//	assert(str1);
+//	assert(str2);
+//	if (str1 <= str2 )
+//	{
+//		while (size--)
+//		{
+//			*(char*)str1 = *(char*)str2;
+//			str1 = (char*)str1 + 1;
+//			str2 = (char*)str2 + 1;
+//		}
+//	}
+//	else
+//	{
+//		str1 = (char*)str1 + size - 1;
+//		str2 = (char*)str2 + size - 1;
+//		while (size--)
+//		{
+//			*(char*)str1 = *(char*)str2;
+//			str1 = (char*)str1 - 1;
+//			str2 = (char*)str2 -1;
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	char str[] = "memmove can be very useful";
+//	MyMemmove(str + 6, str + 2, 3);
+//	puts(str);
+//	system("pause");
+//	return 0;
+//}
 
 //void* MyMemcpy(void * arr2, const void * arr1, int size)
 //{
