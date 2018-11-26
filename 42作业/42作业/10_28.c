@@ -3,6 +3,89 @@
 #include<stdlib.h>
 #include<string.h>
 #include<assert.h>
+#include<assert.h>
+
+//
+//int MyStrncmp(const char* dest, const char* src, int count)
+//{
+//	assert(dest);
+//	assert(src);
+//	while (count&&(*dest||*src))
+//	{
+//		if ((*dest - *src) == 0)
+//		{
+//			dest++;
+//			src++;
+//			count--;
+//		}
+//		else if ((*dest-*src)>0)
+//		{
+//			return 1;
+//		}
+//		else
+//		{
+//			return -1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[20] = "it's burning!";
+//	int num = MyStrncmp(arr1, "it's burning!",10);
+//	printf("%d", num);
+//	system("pause");
+//	return 0;
+//}
+
+//
+//char* MyStrncat(char* dest, const char* src, int n)
+//{
+//	assert(src);
+//	char* ret = dest;
+//	while (*ret)
+//	{
+//		ret++;
+//	}
+//	while (n)
+//	{
+//		*ret++ = *src++;
+//		n--;
+//	}
+//	ret++;
+//	*ret = '\0';
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[30] = "let's ";
+//	arr1[20] = MyStrncat(arr1, "it's burning!", 10);
+//	printf("%s", arr1);
+//	system("pause");
+//	return 0;
+//}
+
+
+//char* MyStrncpy(char* dest,const char* src,int n)
+//{
+//	assert(src);
+//	char* ret = dest;
+//	while (n)
+//	{
+//		*ret++ = *src++;
+//		n--;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[20];
+//	arr1[20] = MyStrncpy(arr1,"it's burning!",10);
+//	printf("%s",arr1);
+//	system("pause");
+//	return 0;
+//}
+
 
 //int IntCmp(const void* p1,const void*p2)
 //{
