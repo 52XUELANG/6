@@ -89,8 +89,7 @@
 //	system("pause");
 //	return 0;
 //}
-#include<iostream>
-using namespace std;
+
 //enum Sex
 //{
 //	man,
@@ -126,22 +125,117 @@ using namespace std;
 //	return 0;
 //}
 
-class Body
+//class Body
+//{
+//public:
+//	int s;
+//	int a;
+//};
+//int main()
+//{
+//	Body body1;
+//	body1.a = 16;
+//	body1.s = 16;
+//	cout << sizeof(Body) << endl;
+//	cout << sizeof(body1) << endl;
+//	printf("%p\n", &body1.s);
+//	printf("%p\n", &body1.a);
+//
+//	system("pause");
+//	return 0;
+//}
+
+//int& Add(int a, int b)
+//{
+//	int c = a + b;
+//	return c;
+//}
+//
+//int main()
+//{
+//	int& ret = Add(1, 2);
+//	Add(3, 4);
+//	Add(300, 400);
+//	cout << ret << endl;
+//	system("pause");
+//	return 0;
+//}
+
+//class Time
+//{
+//private:
+//	int _time;
+//public:
+//	Time(int time = 0)
+//	{
+//		cout << "time" << endl;
+//		_time = time;
+//	}
+//};
+//
+//class Data
+//{
+//public:
+//	Data(int year = 2017, int month = 12, int day = 12)
+//	{
+//		_year = year;
+//		_month = month;
+//		_day = day;
+//	}
+//	Data(Data& d)
+//	{
+//		_year = d._year;
+//		_month = d._month;
+//		_day = d._day;
+//	}
+//	void Show()
+//	{
+//		cout << _year << "-" << _month << "-" << _day << endl;
+//	}
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//	//Time _time;
+//};
+//
+//
+//
+//int main()
+//{
+//	Data d1;
+//	d1.Show();
+//	Data d2(d1);
+//	d2.Show();
+//	system("pause");
+//	return 0;
+//}
+
+
+#include<iostream>
+using namespace std;
+
+class AA
 {
+	friend bool operator<(const AA& aa1, const AA& aa2);//friend 友元函数
 public:
-	int s;
-	int a;
+	AA(int a1, int a2)
+		:_a1(a1)
+		, _a2(a2)
+	{}
+
+private:
+	int _a1;
+	int _a2;
 };
+
+bool operator<(const AA& aa1, const AA& aa2)//friend 友元函数(单向的)
+{
+	return aa1._a1 < aa2._a1;
+}
+
 int main()
 {
-	Body body1;
-	body1.a = 16;
-	body1.s = 16;
-	cout << sizeof(Body) << endl;
-	cout << sizeof(body1) << endl;
-	printf("%p\n", &body1.s);
-	printf("%p\n", &body1.a);
-
 	system("pause");
 	return 0;
 }

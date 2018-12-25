@@ -1,60 +1,89 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include"MailList.h"
 
-void AddMember(pMailList* mail_list)
+
+void ListInit(MailList* mail_list)//初始化
 {
 	assert(mail_list);
-	*mail_list = (pMailList)malloc(sizeof(MailList));
+	mail_list->size = 0;
+	mail_list->capacity = 10;
+	mail_list = (MailList*)malloc(sizeof(MailMember)*mail_list->capacity);
+}
+
+void CheckCapacity(MailList* mail_list)
+{
+	mail_list->capacity *= 2;
+	MailList* new_mail_list = NULL;
+	new_mail_list = (MailList*)malloc(sizeof(MailMember)*mail_list->capacity);
+	assert(new_mail_list);
+	for (int i = 0; i < mail_list->size; i++)
+	{
+		new_mail_list->MailList[i] = mail_list->MailList[i];
+	}
+	free(mail_list);
+	mail_list = new_mail_list;
+}
+
+void AddMember(MailList* mail_list)
+{
+	assert(mail_list);
+	if (mail_list->size == mail_list->capacity)
+	{
+		CheckCapacity(mail_list);
+	}
+	mail_list->MailList = (pMailMember)malloc(sizeof(MailMember));
 	printf("姓名:");
-	gets((*mail_list)->name);
+	gets(mail_list->MailList[mail_list->size].name);
 	printf("\n");
 	fflush(stdin);
 
 	printf("性别:");
-	gets((*mail_list)->sex);
+	gets(mail_list->MailList[mail_list->size].sex);
 	printf("\n");
 	fflush(stdin);
 
 	printf("年龄:");
-	scanf("%d", &((*mail_list)->age));
+	scanf("%d", &mail_list->MailList[mail_list->size].age);
 	printf("\n");
 	fflush(stdin);
 
 	printf("电话:");
-	gets((*mail_list)->tel);
+	gets(mail_list->MailList[mail_list->size].tel);
 	printf("\n");
 	fflush(stdin);
 
 	printf("住址:");
-	gets((*mail_list)->address);
+	gets(mail_list->MailList[mail_list->size].address);
 	printf("\n");
 	fflush(stdin);
-
+	mail_list->size++;
 	printf("\n");
 }
-void DeleteMember(pMailList* mail_list)
+void DeleteMember(MailList* mail_list)
 {
 	assert(mail_list);
-	pMailList p_mail_list = *mail_list;
+	MailList* mail_list_tmp = mail_list;
 	printf("输入要删除的姓名:");
 	char del_name[20];
 	scanf("%s",del_name);
-	while (1)
+	int i = 0;
+	while (i<mail_list->size)
 	{
-		if (!strcmp(del_name, p_mail_list->name))
+		if (!strcmp(del_name, mail_list_tmp->MailList[i].name))
 		{
-			printf("姓名:%s\n", p_mail_list->name);
+			printf("姓名:%s\n", mail_list_tmp->MailList[i].name);
 			printf("确认删除？\n Y or N");
 			char c = '\0';
 			scanf("%c", &c);
 			if (c == 'Y')
 			{
-				free(p_mail_list);
-				break;
+				mail_list->MailList[i] = mail_list->MailList[mail_list->size - 1];
+				mail_list->size--;
+				return;
 			}
 			else if (c == 'N')
 			{
-				break;
+				return;
 			}
 			else
 			{
@@ -62,34 +91,142 @@ void DeleteMember(pMailList* mail_list)
 				continue;
 			}
 		}
-		p_mail_list++;
+		i++;
 	}
-	
+	printf("对不起，查无此人");
+	return;
 }
-void FindMember(pMailList* mail_list)
+void FindMember(MailList mail_list)
 {
-	assert(mail_list);
-	printf("输入要查找的姓名:");
-	char find_name[20];
-	gets(find_name);
-	if (!strcmp(find_name, (*mail_list)->name))
+	if (mail_list.size == 0)
 	{
-		printf("姓名:%s\n", (*mail_list)->name);
-		printf("年龄:%d\n",(*mail_list)->age);
-		printf("性别:%s\n", (*mail_list)->sex);
-		printf("电话:%s\n", (*mail_list)->tel);
-		printf("住址:%s\n", (*mail_list)->address);
-		printf("\n\n");
+		printf("没有存储用户");
+		return;
 	}
 	else
 	{
-		printf("查无此人！\n\n");
+		int i = 0;
+		printf("输入要查找的姓名:");
+		char find_name[20];
+		gets(find_name);
+		while (i < mail_list.size)
+		{
+			if (!strcmp(find_name, mail_list.MailList[i].name))
+			{
+				printf("姓名:%s\n", mail_list.MailList[i].name);
+				printf("年龄:%d\n", mail_list.MailList[i].age);
+				printf("性别:%s\n", mail_list.MailList[i].tel);
+				printf("电话:%s\n", mail_list.MailList[i].tel);
+				printf("住址:%s\n", mail_list.MailList[i].address);
+				printf("\n\n");
+				return;
+			}
+			else
+			{
+				i++;
+			}
+			printf("查无此人");
+			return;
+		}
 	}
 }
-void ChangeMember();
-void ShowAllMember();
-void EmptyMember();
-void SortMember();
+void ChangeMember(MailList* mail_list)//修改
+{
+	assert(mail_list);
+	printf("输入要修改的人的姓名: ");
+	char find_name[20];
+	gets(find_name);
+	int i = 0;
+	while (i<mail_list->size)
+	{
+		if (!strcmp(find_name, mail_list->MailList[i].name))
+		{
+			break;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	printf("姓名:");
+	gets(mail_list->MailList[mail_list->size].name);
+	printf("\n");
+	fflush(stdin);
+
+	printf("性别:");
+	gets(mail_list->MailList[mail_list->size].sex);
+	printf("\n");
+	fflush(stdin);
+
+	printf("年龄:");
+	scanf("%d", &mail_list->MailList[mail_list->size].age);
+	printf("\n");
+	fflush(stdin);
+
+	printf("电话:");
+	gets(mail_list->MailList[mail_list->size].tel);
+	printf("\n");
+	fflush(stdin);
+
+	printf("住址:");
+	gets(mail_list->MailList[mail_list->size].address);
+	printf("\n");
+	fflush(stdin);
+
+}
+void ShowAllMember(MailList mail_list)//显示所有
+{
+	if (mail_list.size = 0)
+	{
+		printf("没有存储用户");
+	}
+	else
+	{
+		int i = 0;
+		while (i<mail_list.size)
+		{
+			printf("姓名:%s\n", mail_list.MailList[i].name);
+			printf("年龄:%d\n", mail_list.MailList[i].age);
+			printf("性别:%s\n", mail_list.MailList[i].sex);
+			printf("电话:%s\n", mail_list.MailList[i].tel);
+			printf("住址:%s\n", mail_list.MailList[i].address);
+			i++;
+		}
+	}
+}
+void EmptyMember(MailList* mail_list)//清空
+{
+	mail_list->size = 0;
+}
+
+static void ListBubbleSort(MailList* mail_list)
+{
+	int i = mail_list->size;
+	for (i; i > 0; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (0 >= strcmp(mail_list->MailList[j].name, mail_list->MailList[j + 1].name))
+			{
+				j++;
+			}
+			else if (0 < strcmp(mail_list->MailList[j].name, mail_list->MailList[j + 1].name))
+			{
+				MailMember mail_mem_tmp = mail_list->MailList[j];
+				mail_list->MailList[j] = mail_list->MailList[j + 1];
+				mail_list->MailList[j + 1] = mail_mem_tmp;
+			}
+		}
+	}
+}
+
+void SortMember(MailList* mail_list)//排列
+{
+	ListBubbleSort(mail_list);
+}
+
+
+
 int Menu()
 {
 	printf("请输入操作:\n");

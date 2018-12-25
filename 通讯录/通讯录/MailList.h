@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#ifndef __MAILLIST_H__
-#define __MAILLIST_H__
+#ifndef __MailList_H__
+#define __MailList_H__
 
 #include<stdio.h>
 #include<assert.h>
@@ -8,22 +8,32 @@
 #include<malloc.h>
 #include<string.h>
 
-typedef struct MailList
+typedef struct MailMember
 {
 	char name[20];
 	char sex[5];
 	short age;
 	char tel[11];
 	char address[50];
-}MailList, *pMailList;
+	int size;
+}MailMember, *pMailMember;
 
+typedef struct MailList
+{
+	MailMember* MailList;
+	int size;
+	int capacity;
+}MailList;
+
+
+void ListInit(MailList* mail_list);
 int Menu();
-void AddMember(pMailList* mail_list);
-void DeleteMember(mail_list);
-void FindMember(pMailList* mail_list);
-void ChangeMember();
-void ShowAllMember();
-void EmptyMember();
-void SortMember();
+void AddMember(MailList* mail_list);
+void DeleteMember(MailList* mail_list);
+void FindMember(MailList mail_list);
+void ChangeMember(MailList* mail_list);
+void ShowAllMember(MailList mail_list);
+void EmptyMember(MailList* mail_list);
+void SortMember(MailList* mail_list);
 
 #endif
