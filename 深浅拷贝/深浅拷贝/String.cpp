@@ -23,13 +23,13 @@ void MyString::PushBack(const char* ch)
 	{
 		Expand(_size + size);
 	}
-	//char* pos = _str + _size;//到_str的\0处
-	//while (*pos++ = *ch++);
-	strcpy(_str + _size, ch);
-
+	char* pos = _str + _size;//到_str的\0处
+	while (*pos++ = *ch++);
+	//strcpy(_str + _size, ch);
+	_size += size;
 }
 
-void MyString::Expand(size_t n)
+void MyString::Expand(size_t n)//扩容
 {
 	if (n > _capacity)
 	{
@@ -40,3 +40,125 @@ void MyString::Expand(size_t n)
 		_capacity = n;
 	}
 }
+
+MyString& MyString::operator=(const MyString& s)
+
+{
+	if (this != &s)
+	{
+		MyString tmp(s._str);
+		this->Swap(tmp);
+	}
+	return *this;
+}
+MyString& MyString::operator+(char ch)
+{
+	MyString tmp(*this);
+	tmp.PushBack(ch);
+	return tmp;
+}
+MyString& MyString::operator+=(char ch)
+{
+	PushBack(ch);
+	return *this;
+}
+MyString& MyString::operator+(const char* ch)
+{
+	MyString tmp(*this);
+	tmp.PushBack(ch);
+	return tmp;
+}
+MyString& MyString::operator+=(const char* ch)
+{
+	PushBack(ch);
+	return *this;
+}
+void MyString::PushFront(char ch)
+{
+	if (_size >= _capacity)
+	{
+		Expand(_capacity * 2);
+	}
+	for (int i = _size; i >= 0; i--)
+	{
+		_str[i+1] = _str[i];
+	}
+	_str[0] = ch;
+	_size++;
+}
+void MyString::PushFront(const char* str)//头插
+{
+	size_t size = strlen(str);
+	if (_size + size > _capacity)
+	{
+		Expand(_size + size);
+	}
+	for (int i = _size; i >= 0; i--)
+	{
+		_str[i + size] = _str[i];
+	}
+	//char *p = _str;
+	//while (*str != '\0')
+	//{
+	//	*p++ = *str++;
+	//}
+	memmove(_str, str,size);
+	_size += size;
+}
+
+void MyString::PopBack(size_t size)//尾删
+{
+	if (_size < size)
+	{
+		cout << "超出可删除范围" << endl;
+		return;
+	}
+	_size -= size;
+	_str[_size] = '\0';
+}
+
+void MyString::PopFront(size_t size)//头删
+{
+	if (_size < size)
+	{
+		cout << "超出可删除范围" << endl;
+		return;
+	}
+	_size -= size;
+	char* p = _str + size;
+	char* q = _str;
+	while (*q++ = *p++);
+}
+void MyString::Insert(size_t pos, char ch)
+{
+
+}
+
+void MyString::Insert(size_t pos, const char* str)
+{
+
+}
+void MyString::Erase(size_t pos,size_t n = 1)
+{
+
+}
+//bool MyString::operator>(const MyString& s)
+//{
+//
+//}
+//bool MyString::operator>=(const MyString& s)
+//{
+//
+//}bool MyString::operator<(const MyString& s)
+//{
+//
+//}bool MyString::operator<=(const MyString& s)
+//{
+//
+//}bool MyString::operator==(const MyString& s)
+//{
+//
+//}bool MyString::operator!=(const MyString& s)
+//{
+//
+//}

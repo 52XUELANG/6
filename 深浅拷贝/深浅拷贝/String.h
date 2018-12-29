@@ -6,6 +6,7 @@
 //现代写法--复用
 #ifndef __STRING_H__
 #define __STRING_H__
+#include<assert.h>
 #include<iostream>
 using namespace std;
 
@@ -36,15 +37,7 @@ public:
 	//	}
 	//	return *this;
 	//}
-	MyString& operator = (const MyString& s)
-	{
-		if (this != &s)
-		{
-			MyString tmp(s._str);
-			this->Swap(tmp);
-		}
-		return *this;
-	}
+	MyString& operator = (const MyString& s);
 
 	//MyString(const MyString& s)//拷贝构造:深拷贝,传统写法
 	//	:_str(new char[strlen(s._str)+1])
@@ -78,6 +71,27 @@ public:
 	void PushBack(char ch);
 	void PushBack(const char* ch);
 	void Swap(MyString& s);
+	MyString& operator+(char ch);
+	MyString& operator+=(char ch);
+	MyString& operator+(const char* ch);
+	MyString& operator+=(const char* ch);
+	void PushFront(char ch);
+	void PushFront(const char* str);
+	void PopBack(size_t size);
+	void PopFront(size_t size);
+
+	bool operator>(const MyString& s);
+	bool operator>=(const MyString& s);
+	bool operator<(const MyString& s);
+	bool operator<=(const MyString& s);
+	bool operator==(const MyString& s);
+	bool operator!=(const MyString& s);
+	void Insert(size_t pos, char ch);//增加字符
+	void Insert(size_t pos, const char* str);
+	void Erase(size_t pos, size_t n = 1);
+	void Replace(const char* str1, const char* str2);
+	size_t Find(char ch);
+	size_t Find(const char* str);
 private:
 	void Expand(size_t n);
 
